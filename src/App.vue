@@ -1,7 +1,13 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+  <div >
+    <h1>{{ msg }}</h1>
+    <input v-model="query" placeholder="Query">
+    <router-link :to="'/BookList?query=' + query" > 
+      <button > 조회 </button>
+    </router-link>
+    <div>
+      <router-view :key="$route.fullPath" />
+    </div>
   </div>
 </template>
 
