@@ -9,8 +9,7 @@ export default new Router({
     {
       path: '/BookList',
       name: 'BookList',
-      component: BookList,
-      props: true
-    },
+      component: BookList
+    }
   ]
 })

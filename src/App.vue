@@ -1,8 +1,7 @@
 <template>
   <div >
-    <h1>{{ msg }}</h1>
     <input v-model="query" placeholder="Query">
-    <router-link :to="'/BookList?query=' + query" > 
+    <router-link :to="'/BookList?q=' + query" >
       <button > 조회 </button>
     </router-link>
     <div>
@@ -13,7 +12,12 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data() {
+    return {
+      query: ''
+    }
+  }
 }
 </script>
 
