@@ -1,6 +1,15 @@
 <template>
   <div >
-    <h1>{{ msg }}</h1>
+    <h1> {{ msg }} </h1>
+    <div v-if="dataReady">
+      <div v-for="book in books">
+        Title: {{ book.volumeInfo.title }} <br>
+        Authors: {{ book.volumeInfo.authors }} <br>
+        PublishedDate: {{ book.volumeInfo.publishedDate }} <br>
+        <img :src= "book.volumeInfo.imageLinks.thumbnail" > <br>
+        <hr>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -13,7 +22,9 @@ export default {
   data () {
     return {
       msg: 'BookList',
-      query: ''
+      query: '',
+      dataReady: false,
+      books: []
     }
   },
   created() {
@@ -21,7 +32,8 @@ export default {
   },
   async mounted() {
     const bookList = await GoogleBooksAPI.getVolumes(this.query)
-    alert (bookList)
+    this.books = bookList.data.items
+    this.dataReady = true
   }
 }
 </script>
